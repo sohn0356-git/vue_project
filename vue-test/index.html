@@ -3,21 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vue test</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
     <div id="app">
-        {{ msg }}
+        <div> {{ msgA }}</div>
+        <button v-on:click="changeMessage">Change!</button>
     </div>
     <script>
-        const vueInstance = new Vue({
-            el: '#app',
+        const vm = new Vue({
+            el:'#app',
             data:{
-                msg: 'Hello Vue!'
+                msgA:'Message A.'
+            },
+            methods:{
+                changeMessage () {
+                    this.msgA = 'Changed Message A.';
+                }
+            },
+            computed: {},
+            watch: {
+                msgA(value){
+                    console.log(value)
+                }
             }
-        });
-
+        })
+        console.log(vm);
     </script>
 </body>
 </html>

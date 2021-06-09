@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="todo in computedTodos"
+            :key="todo.id">
+            <input type="checkbox"
+            v-model="todo.done">
+            <span>{{ todo.title }}</span>
+            </li>
+        </ul>
+    </div>
+    <div id="app2">
+        <div>{{ reverseMsg() }}</div>
+        <div>{{ reverseMsg() }}</div>
+        <div>{{ reverseMsg() }}</div>
+        <div>{{ msg.split('').reverse().join('') }}</div>
+        <div>{{ msg.split('').reverse().join('') }}</div>
+        <div>{{ msg.split('').reverse().join('') }}</div>
+        <div>------------------------</div>
+        <div>{{ reversedMsg }}</div>
+        <div>{{ reversedMsg }}</div>
+        <div>{{ reversedMsg }}</div>
+        <div>{{ reversedMsg }}</div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                todos:[
+                    {title:'아침 먹기'},
+                    {title:'점심 먹기'},
+                    {title:'저녁 먹기'},
+                ]
+            },
+            computed:{
+                computedTodos(){
+                    return this.todos.map((todo, index) => {
+                        // return Object.assign({}, todo, {
+                        //     id:index+1,
+                        //     done:false
+                        // })
+                        return{
+                            ...todo,
+                            id:index+1,
+                            done:false
+                        }
+                    })
+                }
+            }
+        })
+        const vm2 = new Vue({
+            el:'#app2',
+            data:{
+                msg:'Hello Vue'
+            },
+            methods:{
+                reverseMsg(){
+                    return this.msg.split('').reverse().join('')
+                }
+            },
+            computed:{
+                reversedMsg(){
+                    return this.msg.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
