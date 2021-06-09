@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <style>
+        .parent{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+        .child{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+    <div id="app">
+        <div class="parent" @click.self="clickHandler">
+        <!-- <div class="parent" @click.capture="clickHandler"> -->
+            <div class="child">
+            <!-- <div class="child" @click.stop="clickHandler"> -->
+
+            </div>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello Vue'
+            },
+            methods:{
+                clickHandler(event){
+                    console.log(event.currentTarget.className)
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
